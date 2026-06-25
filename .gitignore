@@ -7,8 +7,8 @@ node_modules
 # build
 dist
 
-# Memory
-docs
+# Documentation
+docs/
 
 # Tests
 coverage
