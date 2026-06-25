@@ -24,6 +24,26 @@ cp .env.example .env
 
 Edit `.env` with your local configuration:
 
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_NAME=postgres
+PORT=3000
+
+# JWT (change in production)
+JWT_SECRET=your-super-secret-key-change-in-production
+JWT_EXPIRATION=3600
+
+# CORS
+CORS_ORIGIN=http://localhost:3000
+
+# Rate Limiting
+RATE_LIMIT_TTL=60000
+RATE_LIMIT_MAX=10
+```
+
 ### 3. Start PostgreSQL
 
 ```bash
@@ -64,6 +84,39 @@ npm run migration:generate ./src/migrations/Name  # Generate from entities
 npm run migration:run                              # Run pending
 npm run migration:revert                           # Revert last
 npm run migration:create ./src/migrations/Name     # Create empty
+```
+
+## Security Features
+
+- **Helmet**: HTTP security headers
+- **CORS**: Configurable allowed origins
+- **Rate Limiting**: Global throttling (10 requests/minute by default)
+- **JWT Authentication**: Bearer token validation
+- **Input Validation**: Whitelist and forbidNonWhitelisted
+
+## Authentication
+
+### Register
+
+```bash
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John", "email": "john@example.com", "password": "password123"}'
+```
+
+### Login
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "john@example.com", "password": "password123"}'
+```
+
+### Access Protected Route
+
+```bash
+curl -X GET http://localhost:3000/protected \
+  -H "Authorization: Bearer <your-jwt-token>"
 ```
 
 ## License
