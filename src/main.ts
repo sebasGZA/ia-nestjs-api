@@ -6,6 +6,7 @@ import { AppModule } from './app.module';
 import { getCorsConfig } from './shared/config/security.config';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 import { LoggingInterceptor } from './shared/interceptors/logging.interceptor';
+import { setupSwagger } from './shared/config/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -34,6 +35,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  setupSwagger(app);
 
   await app.listen(port, () => {
     Logger.log(`Server is running on port ${port}`, 'main');

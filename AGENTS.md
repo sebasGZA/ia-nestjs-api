@@ -409,3 +409,103 @@ getProtectedResource() {
 ## Tools
 
 When you need to search docs, use `context7` tools.
+
+## API Documentation (Swagger)
+
+Swagger/OpenAPI documentation is available for developer mode, organized by API versions.
+
+### Configuration Structure
+
+```
+src/shared/config/swagger/
+├── index.ts                    # Main setup (creates documents, registers endpoints)
+├── v1.config.ts               # v1 config (title, description, tags)
+└── v1-security.scheme.ts      # Bearer JWT security scheme
+```
+
+### Accessing Swagger UI
+
+| Version | URL | Description |
+|---------|-----|-------------|
+| v1 | `http://localhost:3000/docs/v1` | Swagger UI for API v1 |
+| v1 | `http://localhost:3000/docs/v1-json` | OpenAPI JSON document |
+
+### JWT Authentication in Swagger
+
+The API uses JWT Bearer token authentication. To test protected endpoints:
+
+1. Execute `POST /v1/auth/register` or `POST /v1/auth/login`
+2. Copy the `access_token` from the response
+3. Click the **"Authorize"** button at the top of Swagger UI
+4. Paste the token in the "Value" field
+5. Click **"Authorize"** -- now protected endpoints will include the token
+
+### Adding Swagger to a New Module
+
+#### 1. Add `@ApiProperty()` to DTOs
+
+```typescript
+import { ApiProperty } from '@nestjs/swagger';
+
+export class Create{Name}Dto {
+  @ApiProperty({ example: 'Example Value', description: 'Field description' })
+  @IsString()
+  @IsNotEmpty()
+  field: string;
+}
+```
+
+#### 2. Add Swagger decorators to Controller
+
+```typescript
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+
+@ApiTags('{Name}')
+@Controller('{name}')
+export class {Name}Controller {
+  @Post()
+  @Version('1')
+  @ApiOperation({ summary: 'Create {name}', description: 'Create a new {name}' })
+  @ApiResponse({ status: 201, description: '{Name} created successfully', type: {Name}ResponseDto })
+  @ApiResponse({ status: 400, description: 'Validation error' })
+  async create(@Body() createDto: Create{Name}Dto) {
+    return this.{name}Service.create(createDto);
+  }
+}
+```
+
+#### 3. Add Security Scheme (if endpoint requires JWT)
+
+```typescript
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+@Get('protected')
+async getProtectedResource() {
+  // ...
+}
+```
+
+#### 4. Add Tag to Swagger Config
+
+Update `src/shared/config/swagger/v1.config.ts`:
+
+```typescript
+export const v1DocumentConfig = {
+  // ... existing config
+  tags: [
+    { name: 'Auth', description: 'Authentication endpoints' },
+    { name: '{Name}', description: '{Description} endpoints' },  // NEW
+  ],
+};
+```
+
+### Swagger Decorators Reference
+
+| Decorator | Purpose | Example |
+|-----------|---------|---------|
+| `@ApiProperty()` | Document DTO fields | `@ApiProperty({ example: 'John' })` |
+| `@ApiTags()` | Group endpoints by tag | `@ApiTags('Auth')` |
+| `@ApiOperation()` | Describe endpoint | `@ApiOperation({ summary: 'Login' })` |
+| `@ApiResponse()` | Document response | `@ApiResponse({ status: 200, type: LoginResponseDto })` |
+| `@ApiBearerAuth()` | Mark endpoint as JWT-protected | `@ApiBearerAuth()` |
+| `@ApiExcludeEndpoint()` | Hide endpoint from docs | `@ApiExcludeEndpoint()` |
