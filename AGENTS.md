@@ -8,14 +8,21 @@ NestJS starter app (v11) — single-module TypeScript server with TypeORM and Po
 
 ```
 src/
-├── config/              # Configuration (database.config.ts)
-├── database/            # Database module (database.module.ts)
-├── entities/            # TypeORM entities (user.entity.ts)
-├── migrations/          # Database migrations
-├── app.module.ts        # Root module
-├── app.controller.ts    # Root controller
-├── app.service.ts       # Root service
-└── main.ts              # Entry point
+├── auth/                  # Authentication module
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   ├── auth.controller.ts
+│   ├── dto/               # Data transfer objects
+│   ├── guards/            # JWT guards
+│   └── strategies/        # Passport strategies
+├── config/                # Configuration
+│   ├── database.config.ts
+│   └── security.config.ts
+├── database/              # Database module
+├── entities/              # TypeORM entities
+├── migrations/            # Database migrations
+├── app.module.ts          # Root module
+└── main.ts                # Entry point
 ```
 
 ## Commands
@@ -51,6 +58,41 @@ npm run migration:generate ./src/migrations/NombreMigracion  # generar desde ent
 npm run migration:run                                         # ejecutar pendientes
 npm run migration:revert                                      # revertir última
 npm run migration:create ./src/migrations/NombreMigracion     # crear vacía
+```
+
+## Security
+
+### Environment Variables
+```env
+# JWT
+JWT_SECRET=your-super-secret-key-change-in-production
+JWT_EXPIRATION=3600
+
+# CORS
+CORS_ORIGIN=http://localhost:3000
+
+# Rate Limiting
+RATE_LIMIT_TTL=60000
+RATE_LIMIT_MAX=10
+```
+
+### Security Features
+- **Helmet**: HTTP security headers (CSP, HSTS, X-Frame-Options)
+- **CORS**: Configurable allowed origins
+- **Rate Limiting**: Global throttling (configurable per environment)
+- **JWT Authentication**: Bearer token validation
+- **Input Validation**: Whitelist and forbidNonWhitelisted
+
+### Protected Routes
+Use `JwtAuthGuard` to protect routes:
+```typescript
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+
+@UseGuards(JwtAuthGuard)
+@Get('protected')
+getProtectedResource() {
+  return { message: 'This is protected' };
+}
 ```
 
 ## Conventions
