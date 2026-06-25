@@ -4,11 +4,11 @@ import { ConfigService } from '@nestjs/config';
 export const getDatabaseConfig = (
   config: ConfigService,
 ): TypeOrmModuleOptions => {
-  const host = config.get<string>('DB_HOST') || 'localhost';
-  const port = config.get<number>('DB_PORT') || 5432;
-  const username = config.get<string>('DB_USERNAME') || 'postgres';
-  const password = config.get<string>('DB_PASSWORD') || 'postgres';
-  const database = config.get<string>('DB_NAME') || 'postgres';
+  const host = config.get<string>('DB_HOST');
+  const port = config.get<number>('DB_PORT');
+  const username = config.get<string>('DB_USERNAME');
+  const password = config.get<string>('DB_PASSWORD');
+  const database = config.get<string>('DB_NAME');
 
   return {
     type: 'postgres',
