@@ -4,10 +4,10 @@ import { UserResponseDto } from './user-response.dto';
 export class LoginResponseDto {
   @Expose()
   @Type(() => UserResponseDto)
-  user: UserResponseDto;
+  user!: UserResponseDto;
 
   @Expose()
-  access_token: string;
+  access_token!: string;
 
   constructor(partial: Partial<LoginResponseDto>) {
     Object.assign(this, partial);
