@@ -5,7 +5,7 @@ import { App } from 'supertest/types';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '../src/auth/auth.module';
-import { User } from '../src/user/domain/user.entity';
+import { User } from '../src/user/domain/entitites/user.entity';
 
 describe('Auth (e2e)', () => {
   let app: INestApplication<App>;

@@ -5,7 +5,7 @@ import { DataSource, Repository } from 'typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { AuthService } from './auth.service';
-import { User } from '../../../user/domain/user.entity';
+import { User } from '../../../user/domain/entitites/user.entity';
 import { ConflictException, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
