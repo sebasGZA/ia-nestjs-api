@@ -47,9 +47,9 @@ export class UserEntity1782360156976 implements MigrationInterface {
 ### Comandos de Migración
 
 ```bash
-npm run migration:generate ./src/migrations/NuevaMigracion  # Generar desde entidades
-npm run migration:run                                         # Ejecutar pendientes
-npm run migration:revert                                      # Revertir última
+pnpm run migration:generate ./src/migrations/NuevaMigracion  # Generar desde entidades
+pnpm run migration:run                                         # Ejecutar pendientes
+pnpm run migration:revert                                      # Revertir última
 ```
 
 ## Configuración: `src/config/database.config.ts`

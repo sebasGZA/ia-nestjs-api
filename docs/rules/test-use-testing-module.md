@@ -254,7 +254,7 @@ describe('AuthController', () => {
 ### Comandos
 
 ```bash
-npm run test              # Ejecutar todos los tests
-npm run test:watch        # Modo watch
-npm run test:cov          # Con cobertura
+pnpm run test              # Ejecutar todos los tests
+pnpm run test:watch        # Modo watch
+pnpm run test:cov          # Con cobertura
 ```

@@ -6,14 +6,14 @@ NestJS v11 starter app with TypeORM and PostgreSQL.
 
 - Node.js 20+
 - Docker & Docker Compose
-- npm
+- pnpm
 
 ## Setup
 
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Create environment variables
@@ -53,13 +53,13 @@ docker compose up -d
 ### 4. Run migrations
 
 ```bash
-npm run migration:run
+pnpm run migration:run
 ```
 
 ### 5. Start development server
 
 ```bash
-npm run start:dev
+pnpm run start:dev
 ```
 
 Server available at `http://localhost:3000`
@@ -68,22 +68,22 @@ Server available at `http://localhost:3000`
 
 | Script | Description |
 |--------|-------------|
-| `npm run start:dev` | Development server with watch |
-| `npm run build` | Compile to dist/ |
-| `npm run start:prod` | Production server |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Run Prettier |
-| `npm run test` | Unit tests |
-| `npm run test:e2e` | E2E tests |
-| `npm run test:cov` | Coverage report |
+| `pnpm run start:dev` | Development server with watch |
+| `pnpm run build` | Compile to dist/ |
+| `pnpm run start:prod` | Production server |
+| `pnpm run lint` | Run ESLint |
+| `pnpm run format` | Run Prettier |
+| `pnpm run test` | Unit tests |
+| `pnpm run test:e2e` | E2E tests |
+| `pnpm run test:cov` | Coverage report |
 
 ## Database Migrations
 
 ```bash
-npm run migration:generate ./src/migrations/Name  # Generate from entities
-npm run migration:run                              # Run pending
-npm run migration:revert                           # Revert last
-npm run migration:create ./src/migrations/Name     # Create empty
+pnpm run migration:generate ./src/migrations/Name  # Generate from entities
+pnpm run migration:run                              # Run pending
+pnpm run migration:revert                           # Revert last
+pnpm run migration:create ./src/migrations/Name     # Create empty
 ```
 
 ## Security Features
@@ -99,7 +99,7 @@ npm run migration:create ./src/migrations/Name     # Create empty
 ### Register
 
 ```bash
-curl -X POST http://localhost:3000/auth/register \
+curl -X POST http://localhost:3000/v1/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name": "John", "email": "john@example.com", "password": "password123"}'
 ```
@@ -107,7 +107,7 @@ curl -X POST http://localhost:3000/auth/register \
 ### Login
 
 ```bash
-curl -X POST http://localhost:3000/auth/login \
+curl -X POST http://localhost:3000/v1/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email": "john@example.com", "password": "password123"}'
 ```

@@ -129,7 +129,7 @@ docs/
 ## Verificación
 
 ```bash
-npm run build    # ✅ Exitoso
-npm run lint     # ✅ Sin errores
-npm run test     # ✅ 9/9 tests pasaron
+pnpm run build    # ✅ Exitoso
+pnpm run lint     # ✅ Sin errores
+pnpm run test     # ✅ 9/9 tests pasaron
 ```

@@ -19,7 +19,7 @@ Implementa caché para reducir consultas a la base de datos.
 ### Dependencias
 
 ```bash
-npm install @nestjs/cache-manager cache-manager
+pnpm add @nestjs/cache-manager cache-manager
 ```
 
 ### Módulo: `src/auth/auth.module.ts`

@@ -28,19 +28,19 @@ src/
 ## Commands
 
 ```bash
-npm install             # setup
-npm run build           # compile to dist/
-npm run start           # start server
-npm run start:dev       # dev server (port 3000, watch mode)
-npm run start:debug     # debug server (watch mode)
-npm run start:prod      # production server
-npm run lint            # eslint --fix
-npm run format          # prettier write
-npm run test            # unit tests (src/**/*.spec.ts)
-npm run test:watch      # unit tests in watch mode
-npm run test:debug      # debug unit tests
-npm run test:cov        # coverage report
-npm run test:e2e        # e2e tests (test/*.e2e-spec.ts)
+pnpm install             # setup
+pnpm run build           # compile to dist/
+pnpm run start           # start server
+pnpm run start:dev       # dev server (port 3000, watch mode)
+pnpm run start:debug     # debug server (watch mode)
+pnpm run start:prod      # production server
+pnpm run lint            # eslint --fix
+pnpm run format          # prettier write
+pnpm run test            # unit tests (src/**/*.spec.ts)
+pnpm run test:watch      # unit tests in watch mode
+pnpm run test:debug      # debug unit tests
+pnpm run test:cov        # coverage report
+pnpm run test:e2e        # e2e tests (test/*.e2e-spec.ts)
 ```
 
 ## Database
@@ -54,10 +54,10 @@ docker compose up -d
 
 ### Migraciones
 ```bash
-npm run migration:generate ./src/migrations/NombreMigracion  # generar desde entidades
-npm run migration:run                                         # ejecutar pendientes
-npm run migration:revert                                      # revertir última
-npm run migration:create ./src/migrations/NombreMigracion     # crear vacía
+pnpm run migration:generate ./src/migrations/NombreMigracion  # generar desde entidades
+pnpm run migration:run                                         # ejecutar pendientes
+pnpm run migration:revert                                      # revertir última
+pnpm run migration:create ./src/migrations/NombreMigracion     # crear vacía
 ```
 
 ## Security

@@ -1,4 +1,3 @@
-import { LoginDto } from '../../infrastructure/dto/login.dto';
 import { IAuthLogin } from './auth-login.interface';
 import { IAuthRegister } from './auth-register.interface';
 

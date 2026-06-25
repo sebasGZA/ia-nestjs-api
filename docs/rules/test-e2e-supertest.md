@@ -136,7 +136,7 @@ describe('Auth (e2e)', () => {
 ### Comandos
 
 ```bash
-npm run test:e2e  # Ejecutar tests e2e
+pnpm run test:e2e  # Ejecutar tests e2e
 ```
 
 ## Nota
