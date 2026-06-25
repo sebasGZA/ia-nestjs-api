@@ -3,9 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './shared/database/database.module';
 import { AuthModule } from './auth/auth.module';
-import { getThrottlerConfig } from './config/security.config';
+import { getThrottlerConfig } from './shared/config/security.config';
 
 @Module({
   imports: [

@@ -5,7 +5,7 @@ import { App } from 'supertest/types';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '../src/auth/auth.module';
-import { User } from '../src/entities/user.entity';
+import { User } from '../src/user/domain/entitites/user.entity';
 
 describe('Auth (e2e)', () => {
   let app: INestApplication<App>;
@@ -16,11 +16,11 @@ describe('Auth (e2e)', () => {
         ConfigModule.forRoot({ isGlobal: true }),
         TypeOrmModule.forRoot({
           type: 'postgres',
-          host: process.env.DB_HOST || 'localhost',
+          host: process.env.DB_HOST,
           port: parseInt(process.env.DB_PORT || '5432'),
-          username: process.env.DB_USERNAME || 'postgres',
-          password: process.env.DB_PASSWORD || 'postgres',
-          database: process.env.DB_NAME || 'ia_test',
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
           entities: [User],
           synchronize: true,
         }),

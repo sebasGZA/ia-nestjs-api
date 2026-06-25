@@ -1,12 +1,12 @@
-import { RegisterDto } from '../dto/register.dto';
-import { LoginDto } from '../dto/login.dto';
+import { IAuthLogin } from './auth-login.interface';
+import { IAuthRegister } from './auth-register.interface';
 
 export interface IAuthService {
-  register(registerDto: RegisterDto): Promise<{
+  register(registerDto: IAuthRegister): Promise<{
     user: { id: string; name: string; email: string };
     access_token: string;
   }>;
-  login(loginDto: LoginDto): Promise<{
+  login(loginDto: IAuthLogin): Promise<{
     user: { id: string; name: string; email: string };
     access_token: string;
   }>;

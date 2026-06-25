@@ -5,7 +5,7 @@ import { DataSource, Repository } from 'typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { AuthService } from './auth.service';
-import { User } from '../entities/user.entity';
+import { User } from '../../../user/domain/entitites/user.entity';
 import { ConflictException, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
@@ -96,7 +96,7 @@ describe('AuthService', () => {
     });
 
     it('should throw ConflictException if email already exists', async () => {
-      jest.spyOn(userRepository, 'findOne').mockResolvedValue(mockUser as User);
+      jest.spyOn(userRepository, 'findOne').mockResolvedValue(mockUser);
 
       await expect(service.register(registerDto)).rejects.toThrow(
         ConflictException,

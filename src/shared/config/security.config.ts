@@ -16,7 +16,7 @@ export const getThrottlerConfig = (
 };
 
 export const getCorsConfig = (config: ConfigService) => {
-  const origin = config.get<string>('CORS_ORIGIN') || 'http://localhost:3000';
+  const origin = config.get<string>('CORS_ORIGIN');
 
   return {
     origin,
