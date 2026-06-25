@@ -12,3 +12,10 @@ docs/
 
 # Tests
 coverage
+
+# Specs
+spec
+
+# Agents
+AGENTS.md
+.agents/
