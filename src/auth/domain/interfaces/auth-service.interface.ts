@@ -1,5 +1,5 @@
-import { RegisterDto } from '../dto/register.dto';
-import { LoginDto } from '../dto/login.dto';
+import { RegisterDto } from '../../infrastructure/dto/register.dto';
+import { LoginDto } from '../../infrastructure/dto/login.dto';
 
 export interface IAuthService {
   register(registerDto: RegisterDto): Promise<{
